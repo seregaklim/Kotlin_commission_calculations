@@ -44,7 +44,7 @@ fun main () {
         maxTransferText,
         discounttransferMastercardMaestroKopeks)
 
-    var transferKopeckVkPay = 40001 * convectorRubleToKopeck
+    var transferKopeckVkPay = 0 * convectorRubleToKopeck
     val maxTransferVkPay = 15000 * convectorRubleToKopeck
 
     val maxTransferVkPayMoth = 40000 * convectorRubleToKopeck
@@ -71,10 +71,9 @@ fun main () {
         minTransferRublesVisaMir,
         trComVisaMir.toInt()
        )
-    println(transfersVkPay)
+
     println("Перевод сотавил $transfer копеек")
-    println("$transferVkPay $transfersVkPay ,$transferMastercardMaestro $resultMastercardMaestro, " +
-            "$transferVisaAndMir $resultVisaMir")
+
 }
 fun transfer(
     maxTransferText: String,
@@ -92,7 +91,7 @@ fun transfer(
     transferVisaMir: Int,
     minTransferRublesVisaMir: Int,
     trComVisaMir: Int
-) = when  ("перевод Mastercard Maestro") {
+) = when  ( "перевод Vk Pay" ) {
     "перевод Vk Pay" -> {
          transferVkPay(
             maxTransferText,
