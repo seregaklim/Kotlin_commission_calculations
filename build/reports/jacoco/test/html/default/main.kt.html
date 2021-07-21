@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ru"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>main.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Kotlin_commission_calculations</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">main.kt</span></div><h1>main.kt</h1><pre class="source lang-java linenums">
+fun main() {
+<span class="nc" id="L3">    val transferVkPay = &quot;РїРµСЂРµРІРѕРґ Vk Pay&quot;</span>
+<span class="nc" id="L4">    val transferMastercardMaestro = &quot;РїРµСЂРµРІРѕРґ Mastercard Maestro&quot;</span>
+<span class="nc" id="L5">    val transferVisaAndMir = &quot;РїРµСЂРµРІРѕРґ Visa Рё MРёСЂ&quot;</span>
+<span class="nc" id="L6">    val maxTransferText = &quot;РњР°РєСЃРёРјР°Р»СЊРЅР°СЏ СЃСѓРјРјР° РїРµСЂРµРІРѕРґРѕРІ&quot;</span>
+
+<span class="nc" id="L8">    val convectorRubleToKopeck = 100</span>
+    
+<span class="nc" id="L10">    val transferLimitMonth = 600_000 * convectorRubleToKopeck</span>
+<span class="nc" id="L11">    val transferLimitDate = 150_000 * convectorRubleToKopeck</span>
+
+<span class="nc" id="L13">    val minTransferRublesVisaMir = 35 * convectorRubleToKopeck</span>
+<span class="nc" id="L14">    val commissionVisaMir = 0.0075</span>
+<span class="nc" id="L15">    var transferVisaMir = 34241 * convectorRubleToKopeck</span>
+
+<span class="nc" id="L17">    var maxSummaTransferVisaMir = 0 * convectorRubleToKopeck</span>
+<span class="nc" id="L18">    var trComVisaMir =  transferVisaMir -( transferVisaMir * commissionVisaMir)</span>
+
+
+<span class="nc" id="L21">    val resultVisaMir = resultVisaMir(</span>
+<span class="nc" id="L22">        maxTransferText,</span>
+<span class="nc" id="L23">        transferLimitMonth,</span>
+<span class="nc" id="L24">        maxSummaTransferVisaMir,</span>
+<span class="nc" id="L25">        transferVisaMir,</span>
+<span class="nc" id="L26">        minTransferRublesVisaMir,</span>
+<span class="nc" id="L27">        transferLimitDate,</span>
+<span class="nc" id="L28">        trComVisaMir.toInt()</span>
+    )
+
+<span class="nc" id="L31">    val maxSummaTransferMastercardMaestro = 0 * convectorRubleToKopeck</span>
+<span class="nc" id="L32">    var transfermastercardMaestroKopecks = 50000 * convectorRubleToKopeck</span>
+<span class="nc" id="L33">    val discounttransferMastercardMaestroKopeks: Int = 75_000 * convectorRubleToKopeck</span>
+<span class="nc" id="L34">    val disountMastercardMaestro = true</span>
+<span class="nc" id="L35">    var commissionMastercardMaestro: Int = (transfermastercardMaestroKopecks * 0.006 + 2000).toInt()</span>
+<span class="nc" id="L36">        commissionMastercardMaestro = transfermastercardMaestroKopecks - commissionMastercardMaestro</span>
+<span class="nc" id="L37">    val resultMastercardMaestro = resultMastercardMaestro(</span>
+<span class="nc" id="L38">        disountMastercardMaestro,</span>
+<span class="nc" id="L39">        maxSummaTransferMastercardMaestro,</span>
+<span class="nc" id="L40">        transferLimitMonth,</span>
+<span class="nc" id="L41">        transfermastercardMaestroKopecks,</span>
+<span class="nc" id="L42">        transferLimitDate,</span>
+<span class="nc" id="L43">        commissionMastercardMaestro,</span>
+<span class="nc" id="L44">        maxTransferText,</span>
+<span class="nc" id="L45">        discounttransferMastercardMaestroKopeks)</span>
+
+<span class="nc" id="L47">    var transferKopeckVkPay = 100000* convectorRubleToKopeck</span>
+<span class="nc" id="L48">    val minTransferVkPay = 15000 * convectorRubleToKopeck</span>
+<span class="nc" id="L49">    var maxSummaTransferVkPay = 0</span>
+<span class="nc" id="L50">    val maxTransferVkPayMoth = 40000 * convectorRubleToKopeck</span>
+<span class="nc" id="L51">    val transfersVkPay = transferVkPay(</span>
+<span class="nc" id="L52">        maxTransferText,</span>
+<span class="nc" id="L53">        transferKopeckVkPay,</span>
+<span class="nc" id="L54">        minTransferVkPay,</span>
+<span class="nc" id="L55">        maxSummaTransferVkPay,</span>
+<span class="nc" id="L56">        maxTransferVkPayMoth</span>
+    )
+
+<span class="nc" id="L59">    val transfer = transfer( maxTransferText,</span>
+<span class="nc" id="L60">        transferKopeckVkPay,</span>
+<span class="nc" id="L61">        minTransferVkPay,</span>
+<span class="nc" id="L62">        maxSummaTransferVkPay,</span>
+<span class="nc" id="L63">        maxTransferVkPayMoth,</span>
+<span class="nc" id="L64">        disountMastercardMaestro,</span>
+<span class="nc" id="L65">        maxSummaTransferMastercardMaestro,</span>
+<span class="nc" id="L66">        transferLimitMonth,</span>
+<span class="nc" id="L67">        transfermastercardMaestroKopecks,</span>
+<span class="nc" id="L68">        transferLimitDate,</span>
+<span class="nc" id="L69">        commissionMastercardMaestro,</span>
+<span class="nc" id="L70">        discounttransferMastercardMaestroKopeks,</span>
+<span class="nc" id="L71">        maxSummaTransferVisaMir,</span>
+<span class="nc" id="L72">        transferVisaMir,</span>
+<span class="nc" id="L73">        minTransferRublesVisaMir,</span>
+<span class="nc" id="L74">        trComVisaMir.toInt()</span>
+       )
+<span class="nc" id="L76">    println(transfersVkPay)</span>
+<span class="nc" id="L77">    println(&quot;РџРµСЂРµРІРѕРґ СЃРѕС‚Р°РІРёР» $transfer РєРѕРїРµРµРє&quot;)</span>
+<span class="nc" id="L78">    println(&quot;$transferVkPay $transfersVkPay ,$transferMastercardMaestro $resultMastercardMaestro, &quot; +</span>
+<span class="nc" id="L79">            &quot;$transferVisaAndMir $resultVisaMir&quot;)</span>
+<span class="nc" id="L80">}</span>
+fun transfer(
+    maxTransferText: String,
+    transferKopeckVkPay: Int,
+    minTransferVkPay: Int,
+    maxSummaTransferVkPay: Int,
+    maxTransferVkPayMoth: Int,
+    disountMastercardMaestro: Boolean,
+    maxSummaTransferMastercardMaestro: Int,
+    transferLimitMonth: Int,
+    transfermastercardMaestroKopecks: Int,
+    transferLimitDate: Int,
+    commissionMastercardMaestro: Int,
+    discounttransferMastercardMaestroKopeks: Int,
+    maxSummaTransferVisaMir: Int,
+    transferVisaMir: Int,
+    minTransferRublesVisaMir: Int,
+    trComVisaMir: Int
+<span class="fc" id="L98">) = when  (&quot;РїРµСЂРµРІРѕРґ Mastercard Maestro&quot;) {</span>
+<span class="pc bpc" id="L99" title="1 of 2 branches missed.">    &quot;РїРµСЂРµРІРѕРґ Vk Pay&quot; -&gt; {</span>
+<span class="nc" id="L100">        transferVkPay( maxTransferText,</span>
+<span class="nc" id="L101">            transferKopeckVkPay,</span>
+<span class="nc" id="L102">            minTransferVkPay,</span>
+<span class="nc" id="L103">            maxSummaTransferVkPay,</span>
+<span class="nc" id="L104">            maxTransferVkPayMoth)</span>
+    }
+<span class="pc bpc" id="L106" title="1 of 2 branches missed.">    &quot;РїРµСЂРµРІРѕРґ Mastercard Maestro&quot; -&gt; {</span>
+<span class="fc" id="L107">        resultMastercardMaestro(</span>
+<span class="fc" id="L108">            disountMastercardMaestro,</span>
+<span class="fc" id="L109">            maxSummaTransferMastercardMaestro,</span>
+<span class="fc" id="L110">            transferLimitMonth,</span>
+<span class="fc" id="L111">            transfermastercardMaestroKopecks,</span>
+<span class="fc" id="L112">            transferLimitDate,</span>
+<span class="fc" id="L113">            commissionMastercardMaestro,</span>
+<span class="fc" id="L114">            maxTransferText,</span>
+<span class="fc" id="L115">            discounttransferMastercardMaestroKopeks</span>
+        )
+    }
+<span class="nc bnc" id="L118" title="All 2 branches missed.">    &quot;РїРµСЂРµРІРѕРґ Visa Рё MРёСЂ&quot; -&gt; resultVisaMir(</span>
+<span class="nc" id="L119">        maxTransferText,</span>
+<span class="nc" id="L120">        transferLimitMonth,</span>
+<span class="nc" id="L121">        maxSummaTransferVisaMir,</span>
+<span class="nc" id="L122">        transferVisaMir,</span>
+<span class="nc" id="L123">        minTransferRublesVisaMir,</span>
+<span class="nc" id="L124">        transferLimitDate,</span>
+<span class="nc" id="L125">        trComVisaMir</span>
+    )
+<span class="nc" id="L127">    else -&gt; { &quot;РЈ Р’Р°СЃ РЅРµРёР·РІРµС‚РЅР°СЏ РїР»Р°С‚РµР¶РЅР°СЏ СЃРёСЃС‚РµРјР°!&quot;</span>
+    }
+<span class="fc" id="L129">}</span>
+
+fun  transferVkPay(
+    maxTransferText: String,
+    transferKopeckVkPay: Int,
+    minTransferVkPay: Int,
+    maxSummaTransferVkPay: Int,
+    maxTransferVkPayMoth: Int
+<span class="nc" id="L137">) = when {</span>
+<span class="nc bnc" id="L138" title="All 4 branches missed.">    transferKopeckVkPay &lt;= minTransferVkPay &amp;&amp; maxSummaTransferVkPay &lt;= maxTransferVkPayMoth -&gt; transferKopeckVkPay</span>
+<span class="nc" id="L139">    else -&gt; maxTransferText</span>
+<span class="nc" id="L140">}</span>
+fun resultMastercardMaestro(
+    disountMastercardMaestro: Boolean,
+    maxSummaTransferMastercardMaestro: Int,
+    transferLimitMonth: Int,
+    transfermastercardMaestroKopecks: Int,
+    transferLimitDate: Int,
+    commissionMastercardMaestro: Int,
+    maxTransferText: String,
+    discounttransferMastercardMaestroKopeks:Int
+<span class="fc" id="L150">) = when (disountMastercardMaestro ) {</span>
+<span class="pc bpc" id="L151" title="2 of 4 branches missed.">     disountMastercardMaestro &amp;&amp; maxSummaTransferMastercardMaestro &lt;= transferLimitMonth</span>
+<span class="fc" id="L152">             &amp;&amp; maxSummaTransferMastercardMaestro</span>
+<span class="pc bpc" id="L153" title="2 of 4 branches missed.">            &lt;= transferLimitDate &amp;&amp; transfermastercardMaestroKopecks &lt;= discounttransferMastercardMaestroKopeks</span>
+<span class="pc bpc" id="L154" title="3 of 4 branches missed.">            &amp;&amp; transfermastercardMaestroKopecks &lt;= transferLimitDate -&gt; transfermastercardMaestroKopecks</span>
+
+<span class="pc bpc" id="L156" title="1 of 2 branches missed.">    maxSummaTransferMastercardMaestro &lt;= transferLimitMonth</span>
+<span class="fc" id="L157">            &amp;&amp; maxSummaTransferMastercardMaestro</span>
+<span class="pc bpc" id="L158" title="2 of 4 branches missed.">            &lt;= transferLimitDate &amp;&amp; transfermastercardMaestroKopecks &gt;= discounttransferMastercardMaestroKopeks</span>
+<span class="pc bpc" id="L159" title="2 of 4 branches missed.">            &amp;&amp; transfermastercardMaestroKopecks &lt;= transferLimitDate</span>
+<span class="nc" id="L160">    -&gt; commissionMastercardMaestro</span>
+
+<span class="fc" id="L162">    else -&gt; maxTransferText</span>
+<span class="fc" id="L163">}</span>
+fun  resultVisaMir(
+    maxTransferText: String,
+    transferLimitMonth: Int,
+    maxSummaTransferVisaMir: Int,
+    transferVisaMir: Int,
+    minTransferRublesVisaMir: Int,
+    transferLimitDate: Int,
+    trComVisaMir: Int
+<span class="nc" id="L172">) = when  {</span>
+
+<span class="nc bnc" id="L174" title="All 4 branches missed.">    maxSummaTransferVisaMir &lt;= transferLimitMonth &amp;&amp; maxSummaTransferVisaMir &lt;= transferLimitDate</span>
+<span class="nc bnc" id="L175" title="All 4 branches missed.">            &amp;&amp; transferVisaMir &gt;= minTransferRublesVisaMir &amp;&amp; transferVisaMir &lt;= transferLimitDate</span>
+<span class="nc" id="L176">    -&gt;  trComVisaMir</span>
+
+
+<span class="nc bnc" id="L179" title="All 4 branches missed.">    maxSummaTransferVisaMir &lt;= transferLimitMonth &amp;&amp; maxSummaTransferVisaMir &lt;= transferLimitDate</span>
+<span class="nc bnc" id="L180" title="All 4 branches missed.">            &amp;&amp; transferVisaMir &lt;= minTransferRublesVisaMir &amp;&amp; transferVisaMir &lt;= transferLimitDate</span>
+<span class="nc" id="L181">    -&gt; transferVisaMir - minTransferRublesVisaMir</span>
+<span class="nc" id="L182">    else -&gt; maxTransferText</span>
+<span class="nc" id="L183">}</span>
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
