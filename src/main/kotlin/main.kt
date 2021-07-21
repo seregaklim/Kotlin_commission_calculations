@@ -1,5 +1,5 @@
 
-fun main() {
+fun () {
     val transferVkPay = "перевод Vk Pay"
     val transferMastercardMaestro = "перевод Mastercard Maestro"
     val transferVisaAndMir = "перевод Visa и Mир"
