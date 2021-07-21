@@ -1,5 +1,5 @@
 
-fun () {
+fun main () {
     val transferVkPay = "перевод Vk Pay"
     val transferMastercardMaestro = "перевод Mastercard Maestro"
     val transferVisaAndMir = "перевод Visa и Mир"
@@ -44,22 +44,20 @@ fun () {
         maxTransferText,
         discounttransferMastercardMaestroKopeks)
 
-    var transferKopeckVkPay = 100000* convectorRubleToKopeck
-    val minTransferVkPay = 15000 * convectorRubleToKopeck
-    var maxSummaTransferVkPay = 0
+    var transferKopeckVkPay = 40001 * convectorRubleToKopeck
+    val maxTransferVkPay = 15000 * convectorRubleToKopeck
+
     val maxTransferVkPayMoth = 40000 * convectorRubleToKopeck
+
     val transfersVkPay = transferVkPay(
         maxTransferText,
-        transferKopeckVkPay,
-        minTransferVkPay,
-        maxSummaTransferVkPay,
+        transferKopeckVkPay, maxTransferVkPay,
         maxTransferVkPayMoth
     )
 
     val transfer = transfer( maxTransferText,
         transferKopeckVkPay,
-        minTransferVkPay,
-        maxSummaTransferVkPay,
+        maxTransferVkPay,
         maxTransferVkPayMoth,
         disountMastercardMaestro,
         maxSummaTransferMastercardMaestro,
@@ -81,8 +79,7 @@ fun () {
 fun transfer(
     maxTransferText: String,
     transferKopeckVkPay: Int,
-    minTransferVkPay: Int,
-    maxSummaTransferVkPay: Int,
+    maxTransferVkPay: Int,
     maxTransferVkPayMoth: Int,
     disountMastercardMaestro: Boolean,
     maxSummaTransferMastercardMaestro: Int,
@@ -97,10 +94,9 @@ fun transfer(
     trComVisaMir: Int
 ) = when  ("перевод Mastercard Maestro") {
     "перевод Vk Pay" -> {
-        transferVkPay( maxTransferText,
-            transferKopeckVkPay,
-            minTransferVkPay,
-            maxSummaTransferVkPay,
+         transferVkPay(
+            maxTransferText,
+            transferKopeckVkPay, maxTransferVkPay,
             maxTransferVkPayMoth)
     }
     "перевод Mastercard Maestro" -> {
@@ -131,11 +127,10 @@ fun transfer(
 fun  transferVkPay(
     maxTransferText: String,
     transferKopeckVkPay: Int,
-    minTransferVkPay: Int,
-    maxSummaTransferVkPay: Int,
+    maxTransferVkPay : Int,
     maxTransferVkPayMoth: Int
 ) = when {
-    transferKopeckVkPay <= minTransferVkPay && maxSummaTransferVkPay <= maxTransferVkPayMoth -> transferKopeckVkPay
+    transferKopeckVkPay <= maxTransferVkPay && transferKopeckVkPay<= maxTransferVkPayMoth -> transferKopeckVkPay
     else -> maxTransferText
 }
 fun resultMastercardMaestro(
