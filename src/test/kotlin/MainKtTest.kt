@@ -2,89 +2,88 @@ import org.junit.Test
 
 import org.junit.Assert.*
 
-class MainKtTest {
 
+class MainKtTest {
     @Test
-    fun transferVkPay() {
-        //arrange
+    fun transferVkPay(){
+
         val maxTransferText = "Максимальная сумма переводов"
         val convectorRubleToKopeck = 100
-        var transferKopeckVkPay = 10000 * convectorRubleToKopeck
+        var transferKopeckVkPay = 14000 * convectorRubleToKopeck
         val maxTransferVkPay = 15000 * convectorRubleToKopeck
 
-        val maxTransferVkPayMoth = 40000 * convectorRubleToKopeck
-        //act
         val transfersVkPay = transferVkPay(
             maxTransferText,
             transferKopeckVkPay,
-            maxTransferVkPay,
-            maxTransferVkPayMoth
-        )
-        //assert
-        assertEquals(1000000, transfersVkPay)
+            maxTransferVkPay,)
+
+        assertEquals(1400000,transfersVkPay )
+    }
+
+    @Test
+    fun notTransferVkPay(){
+
+        val maxTransferText = "Максимальная сумма переводов"
+        val convectorRubleToKopeck = 100
+        var transferKopeckVkPay = 20000 * convectorRubleToKopeck
+        val maxTransferVkPay = 15000 * convectorRubleToKopeck
+
+        val transfersVkPay = transferVkPay(
+            maxTransferText,
+            transferKopeckVkPay,
+            maxTransferVkPay,)
+
+        assertEquals(maxTransferText,transfersVkPay )
+    }
+
+    @Test
+    fun transferVkPayWhen54() {
+        val maxTransferText = "Максимальная сумма переводов"
+        val convectorRubleToKopeck = 100
+        var transferKopeckVkPay = 20000 * convectorRubleToKopeck
+        val maxTransferVkPay = 15000 * convectorRubleToKopeck
+
+        fun transferVkPayWhen() = when {
+
+            transferKopeckVkPay >= maxTransferVkPay -> maxTransferText
+            transferKopeckVkPay <= maxTransferVkPay ->  transferKopeckVkPay
+            transferKopeckVkPay <= 0 -> 0
+            else -> "ошибка"
+        }
+        assertEquals(maxTransferText,transferVkPayWhen())
+
     }
     @Test
-    fun transferVkPay0() {
-        //arrange
+    fun transferVkPayWhen() {
         val maxTransferText = "Максимальная сумма переводов"
         val convectorRubleToKopeck = 100
         var transferKopeckVkPay = 0 * convectorRubleToKopeck
         val maxTransferVkPay = 15000 * convectorRubleToKopeck
+        fun transferVkPayWhen() = when {
+            transferKopeckVkPay <= maxTransferVkPay -> transferKopeckVkPay
+            transferKopeckVkPay >= maxTransferVkPay -> maxTransferText
 
-        val maxTransferVkPayMoth = 40000 * convectorRubleToKopeck
-        //act
-        val transfersVkPay = transferVkPay(
-            maxTransferText,
-            transferKopeckVkPay,
-            maxTransferVkPay,
-            maxTransferVkPayMoth
-        )
-        //assert
-        assertEquals(0, transfersVkPay)
+            else -> 0
+        }
+        assertEquals(0,transferVkPayWhen())
     }
-    @Test
-    fun notTransferVkPay() {
-        //arrange
-
-        val maxTransferText = "Максимальная сумма переводов"
-        val convectorRubleToKopeck = 100
-        var transferKopeckVkPay = 40000 * convectorRubleToKopeck
-        val maxTransferVkPay = 15000 * convectorRubleToKopeck
-
-        val maxTransferVkPayMoth = 40000 * convectorRubleToKopeck
-
-        //act
-        val transfersVkPay = transferVkPay(
-            maxTransferText,
-            transferKopeckVkPay,
-            maxTransferVkPay,
-            maxTransferVkPayMoth
-        )
-        //assert
-        assertEquals(maxTransferText, transfersVkPay)
-
-    }
-
     @Test
     fun notTransferVkPayMoth() {
         //arrange
         val maxTransferText = "Максимальная сумма переводов"
         val convectorRubleToKopeck = 100
-        var transferKopeckVkPay = 25000 * convectorRubleToKopeck
+        var transferKopeckVkPay = 500* convectorRubleToKopeck
         val maxTransferVkPay = 15000 * convectorRubleToKopeck
 
-        val maxTransferVkPayMoth = 40000 * convectorRubleToKopeck
         //act
         val transfersVkPay = transferVkPay(
             maxTransferText,
             transferKopeckVkPay,
             maxTransferVkPay,
-            maxTransferVkPayMoth
         )
         //assert
-        assertEquals(maxTransferText, transfersVkPay)
+        assertEquals(50000, transfersVkPay)
     }
-
     @Test
     fun transfer() {
         //arrange
@@ -106,7 +105,7 @@ class MainKtTest {
 
         var transferKopeckVkPay = 100 * convectorRubleToKopeck
         val maxTransferVkPay = 15000 * convectorRubleToKopeck
-
+        val zero = 0
         val maxTransferVkPayMoth = 40000 * convectorRubleToKopeck
 
 
@@ -118,10 +117,10 @@ class MainKtTest {
         commissionMastercardMaestro = transfermastercardMaestroKopecks - commissionMastercardMaestro
         //act
 
-        val transfer = transfer(maxTransferText,
+        val transfer = transfer(
+            maxTransferText,
             transferKopeckVkPay,
             maxTransferVkPay,
-            maxTransferVkPayMoth,
             disountMastercardMaestro,
             maxSummaTransferMastercardMaestro,
             transferLimitMonth,
@@ -132,11 +131,11 @@ class MainKtTest {
             maxSummaTransferVisaMir,
             transferVisaMir,
             minTransferRublesVisaMir,
-            trComVisaMir.toInt())
+            trComVisaMir.toInt(),
+
+        )
         assertEquals(10000, transfer)
-
     }
-
     @Test
     fun resultVisaMir() {
         val transferVkPay = "перевод Vk Pay"
@@ -167,10 +166,7 @@ class MainKtTest {
             trComVisaMir.toInt()
         )
         assertEquals(7940000, resultVisaMir)
-
-
     }
-
     @Test
     fun notResultVisaMir() {
         val transferVkPay = "перевод Vk Pay"

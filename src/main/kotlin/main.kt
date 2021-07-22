@@ -6,7 +6,7 @@ fun main () {
     val maxTransferText = "Максимальная сумма переводов"
 
     val convectorRubleToKopeck = 100
-    
+
     val transferLimitMonth = 600_000 * convectorRubleToKopeck
     val transferLimitDate = 150_000 * convectorRubleToKopeck
 
@@ -33,7 +33,7 @@ fun main () {
     val discounttransferMastercardMaestroKopeks: Int = 75_000 * convectorRubleToKopeck
     val disountMastercardMaestro = true
     var commissionMastercardMaestro: Int = (transfermastercardMaestroKopecks * 0.006 + 2000).toInt()
-        commissionMastercardMaestro = transfermastercardMaestroKopecks - commissionMastercardMaestro
+    commissionMastercardMaestro = transfermastercardMaestroKopecks - commissionMastercardMaestro
     val resultMastercardMaestro = resultMastercardMaestro(
         disountMastercardMaestro,
         maxSummaTransferMastercardMaestro,
@@ -44,21 +44,20 @@ fun main () {
         maxTransferText,
         discounttransferMastercardMaestroKopeks)
 
-    var transferKopeckVkPay = 0 * convectorRubleToKopeck
+    var transferKopeckVkPay = 40000 * convectorRubleToKopeck
     val maxTransferVkPay = 15000 * convectorRubleToKopeck
 
-    val maxTransferVkPayMoth = 40000 * convectorRubleToKopeck
+//    val maxTransferVkPayMoth = 40000 * convectorRubleToKopeck
 
     val transfersVkPay = transferVkPay(
         maxTransferText,
-        transferKopeckVkPay, maxTransferVkPay,
-        maxTransferVkPayMoth
-    )
+        transferKopeckVkPay,
+        maxTransferVkPay, )
 
-    val transfer = transfer( maxTransferText,
+    val transfer =  transfer(
+        maxTransferText,
         transferKopeckVkPay,
         maxTransferVkPay,
-        maxTransferVkPayMoth,
         disountMastercardMaestro,
         maxSummaTransferMastercardMaestro,
         transferLimitMonth,
@@ -69,17 +68,15 @@ fun main () {
         maxSummaTransferVisaMir,
         transferVisaMir,
         minTransferRublesVisaMir,
-        trComVisaMir.toInt()
-       )
+        trComVisaMir.toInt(),)
 
-    println("Перевод сотавил $transfer копеек")
+    println ("Перевод сотавил $transfer копеек")
 
 }
 fun transfer(
     maxTransferText: String,
     transferKopeckVkPay: Int,
-    maxTransferVkPay: Int,
-    maxTransferVkPayMoth: Int,
+    maxTransferVkPay :Int,
     disountMastercardMaestro: Boolean,
     maxSummaTransferMastercardMaestro: Int,
     transferLimitMonth: Int,
@@ -90,13 +87,14 @@ fun transfer(
     maxSummaTransferVisaMir: Int,
     transferVisaMir: Int,
     minTransferRublesVisaMir: Int,
-    trComVisaMir: Int
-) = when  ( "перевод Vk Pay" ) {
+    trComVisaMir: Int,
+
+    ) = when  ( "перевод Vk Pay" ) {
     "перевод Vk Pay" -> {
-         transferVkPay(
+        transferVkPay(
             maxTransferText,
             transferKopeckVkPay, maxTransferVkPay,
-            maxTransferVkPayMoth)
+        )
     }
     "перевод Mastercard Maestro" -> {
         resultMastercardMaestro(
@@ -126,12 +124,14 @@ fun transfer(
 fun  transferVkPay(
     maxTransferText: String,
     transferKopeckVkPay: Int,
-    maxTransferVkPay : Int,
-    maxTransferVkPayMoth: Int
+    maxSummaTransferVkPay: Int,
+
 ) = when {
-    transferKopeckVkPay <= maxTransferVkPay && transferKopeckVkPay<= maxTransferVkPayMoth -> transferKopeckVkPay
+    transferKopeckVkPay <= maxSummaTransferVkPay
+    -> transferKopeckVkPay
     else -> maxTransferText
 }
+
 fun resultMastercardMaestro(
     disountMastercardMaestro: Boolean,
     maxSummaTransferMastercardMaestro: Int,
@@ -142,8 +142,8 @@ fun resultMastercardMaestro(
     maxTransferText: String,
     discounttransferMastercardMaestroKopeks:Int
 ) = when (disountMastercardMaestro ) {
-     disountMastercardMaestro && maxSummaTransferMastercardMaestro <= transferLimitMonth
-             && maxSummaTransferMastercardMaestro
+    disountMastercardMaestro && maxSummaTransferMastercardMaestro <= transferLimitMonth
+            && maxSummaTransferMastercardMaestro
             <= transferLimitDate && transfermastercardMaestroKopecks <= discounttransferMastercardMaestroKopeks
             && transfermastercardMaestroKopecks <= transferLimitDate -> transfermastercardMaestroKopecks
 
@@ -175,4 +175,5 @@ fun  resultVisaMir(
     -> transferVisaMir - minTransferRublesVisaMir
     else -> maxTransferText
 }
+
 
