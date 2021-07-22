@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="MainKtTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2021-07-21T12:58:00" hostname="DESKTOP-9J2UKKD" time="0.066">
+<testsuite name="MainKtTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2021-07-22T09:24:27" hostname="DESKTOP-9J2UKKD" time="0.172">
   <properties/>
-  <testcase name="transferVkPay" classname="MainKtTest" time="0.026"/>
-  <testcase name="resultMastercardMaestro" classname="MainKtTest" time="0.001"/>
-  <testcase name="resultVisaMir" classname="MainKtTest" time="0.004"/>
-  <testcase name="notTransferVkPay" classname="MainKtTest" time="0.009"/>
-  <testcase name="notTransferVkPayMoth" classname="MainKtTest" time="0.001"/>
-  <testcase name="transfer" classname="MainKtTest" time="0.001"/>
-  <testcase name="notResultVisaMir" classname="MainKtTest" time="0.0"/>
-  <testcase name="transferVkPay0" classname="MainKtTest" time="0.01"/>
+  <testcase name="transferVkPayWhen54" classname="MainKtTest" time="0.061"/>
+  <testcase name="transferVkPay" classname="MainKtTest" time="0.094"/>
+  <testcase name="resultMastercardMaestro" classname="MainKtTest" time="0.0"/>
+  <testcase name="resultVisaMir" classname="MainKtTest" time="0.005"/>
+  <testcase name="notTransferVkPay" classname="MainKtTest" time="0.0"/>
+  <testcase name="notTransferVkPayMoth" classname="MainKtTest" time="0.0"/>
+  <testcase name="transferVkPayWhen" classname="MainKtTest" time="0.0"/>
+  <testcase name="transfer" classname="MainKtTest" time="0.002"/>
+  <testcase name="notResultVisaMir" classname="MainKtTest" time="0.001"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
